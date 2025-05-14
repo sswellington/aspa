@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 public class Builder
 {
-    private const string FOLDER_PATH = "public"; 
+    private const string FOLDER_PATH = "_public"; 
     private const string FILE_NAME = "index.html"; 
 
     public Builder()
