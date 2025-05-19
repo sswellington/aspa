@@ -1,3 +1,5 @@
+namespace Aspa.html;
+
 public struct Template
 {
     public static string Content => @"<!DOCTYPE html>

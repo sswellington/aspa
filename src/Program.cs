@@ -1,6 +1,10 @@
-﻿internal class Program
+﻿using Aspa.html;
+
+namespace Aspa;
+
+internal static class Program
 {
-    private static void Main(string[] args)
+    private static void Main()
     {
         Console.WriteLine("Aspa (start)");
 

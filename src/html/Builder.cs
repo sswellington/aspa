@@ -1,24 +1,32 @@
-using System.Text.RegularExpressions;
+namespace Aspa.html;
 
 public class Builder
 {
-    private const string FOLDER_PATH = "_public"; 
-    private const string FILE_NAME = "index.html"; 
+    private const string FolderPath = "public"; 
+    private const string FileName = "index.html"; 
 
     public Builder()
     {
         SaveFile();
     }
 
-    public void SaveFile()
+    private void SaveFile()
     {
-        string filePath = Path.Combine(FOLDER_PATH, FILE_NAME);
-
+        string filePath = Path.Combine(FolderPath, FileName);
         File.WriteAllText(filePath, GetContent());
     }
 
-    public string GetContent(bool minified = true)
+    private string GetContent(bool minified = true)
     {
-        return minified ? Regex.Replace(Template.Content, @"\s+", "") : Template.Content;
+        if (minified)
+        {
+            return Template.Content
+                .Replace("\r\n", "")
+                .Replace("\n", "")
+                .Replace("\t", "")
+                .Replace(" ", "")
+                .Trim();
+        }
+        return Template.Content;
     }
 }
