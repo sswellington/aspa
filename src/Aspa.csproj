@@ -11,4 +11,12 @@
     <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="assets\css\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="html\Builder.cs" />
+  </ItemGroup>
+
 </Project>
