@@ -12,11 +12,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="assets\css\" />
+    <Compile Remove="html\Builder.cs" />
+    <Compile Remove="Html\Layout\Assets\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="html\Builder.cs" />
+    <EmbeddedResource Remove="Html\Layout\Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Html\Layout\Assets\**" />
   </ItemGroup>
 
 </Project>

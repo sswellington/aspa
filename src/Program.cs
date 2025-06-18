@@ -1,5 +1,7 @@
-﻿using Aspa.html;
-using Aspa.html.Constants;
+﻿using Aspa.Html.Constants;
+using Aspa.Html.Layout;
+using Layout = Aspa.Html.Layout.Service;
+using Logger = Aspa.Shared.Logger.Service;
 
 namespace Aspa;
 
@@ -7,15 +9,15 @@ internal static class Program
 {
     private static void Main()
     {
-        Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} - Aspa (start)");
-
+        Logger logger = new();
         Model model = new();
         Layout layout = new(model);
-        string filePath = FileConstant.Combine("index");
+        
+        string filePath = FileConstant.Combine();
         string html = layout.ToHtml;
         
         File.WriteAllText(filePath, html);
-
-        Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} - Aspa (complete)");
+        logger.Information($"Page: {model.Head}");
+        logger.Export();
     }
 }

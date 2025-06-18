@@ -1,4 +1,4 @@
-﻿namespace Aspa.shared;
+﻿namespace Aspa.Shared;
 
 public static class Minify
 {

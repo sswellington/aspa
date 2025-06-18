@@ -1,27 +1,25 @@
-using Aspa.html.Constants;
-using Aspa.shared;
+using Aspa.Shared;
 
-namespace Aspa.html;
+namespace Aspa.Html.Layout;
 
-public class Layout
+public class Service
 {
     private readonly Model _model;
-    private static string Template => LayoutConstant.Template;
     public readonly string ToHtml;
     
-    public Layout(Model model)
+    public Service(Model model)
     {
         _model = model;
         ToHtml = Render();
         if (_model.Minified) 
-            ToHtml = Minify.Get(Template);
+            ToHtml = Minify.Get(Constant.Template);
     }
     
     private string Render()
     {
-        string title = $"<title> {_model.Title} </title>"; 
+        string title = $"<title> {_model.Head} </title>"; 
         string body = $"<body> \n    {_model.Body} \n  </body>";
-        return Template
+        return Constant.Template
             .Replace("<title></title>", title)
             .Replace("<body></body>", body);
     }
