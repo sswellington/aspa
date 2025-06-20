@@ -1,6 +1,6 @@
 ﻿using Aspa.Html.Constants;
 using Aspa.Html.Layout;
-using Layout = Aspa.Html.Layout.Service;
+using static Aspa.Html.Layout.Service;
 using Logger = Aspa.Shared.Logger.Service;
 
 namespace Aspa;
@@ -10,14 +10,14 @@ internal static class Program
     private static void Main()
     {
         Logger logger = new();
-        Model model = new();
-        Layout layout = new(model);
+        logger.Information("Page: index (start)");
+        Model index = new(Minified: false);
         
         string filePath = FileConstant.Combine();
-        string html = layout.ToHtml;
+        string html = Render(index);
         
         File.WriteAllText(filePath, html);
-        logger.Information($"Page: {model.Head}");
+        logger.Information("Page: index (complete)");
         logger.Export();
     }
 }

@@ -26,11 +26,11 @@ public class Service
     public void Error(string message) => Log(message, Level.Error);
     public void Fatal(string message) => Log(message, Level.Fatal);
     
-    public void Export(string filename = "aspa-beta")
+    public void Export(string filename = "aspa")
     {
         Information("Aspa (complete)");
         filename += Extension;
         string filePath = Path.Combine(FolderPath, filename);
-        File.WriteAllText(filePath, _content.ToString());
+        File.AppendAllText(filePath, _content.ToString());
     }
 }

@@ -4,6 +4,8 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspa", "src\Aspa.csproj", "{B8E551FE-8D6C-02D1-65BA-E85D0845BFC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "tests\UnitTest\UnitTest.csproj", "{8228F529-01C9-47D4-ADEF-A7A7C2A60017}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,6 +16,10 @@ Global
 		{B8E551FE-8D6C-02D1-65BA-E85D0845BFC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8E551FE-8D6C-02D1-65BA-E85D0845BFC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8E551FE-8D6C-02D1-65BA-E85D0845BFC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8228F529-01C9-47D4-ADEF-A7A7C2A60017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8228F529-01C9-47D4-ADEF-A7A7C2A60017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8228F529-01C9-47D4-ADEF-A7A7C2A60017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8228F529-01C9-47D4-ADEF-A7A7C2A60017}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
