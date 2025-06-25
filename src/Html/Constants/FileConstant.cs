@@ -2,8 +2,8 @@
 
 public static class FileConstant
 {
-    private const string FolderPath = "public";
-    private const string Extension = ".html";
+    private static string FolderPath => "public";
+    private static string Extension => ".html";
     
     public static string Combine(string filename = "index")
     {

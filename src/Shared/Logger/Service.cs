@@ -33,4 +33,6 @@ public class Service
         string filePath = Path.Combine(FolderPath, filename);
         File.AppendAllText(filePath, _content.ToString());
     }
+    
+    public string CurrentLogContent => _content.ToString();
 }

@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="html\Builder.cs" />
     <Compile Remove="Html\Layout\Assets\**" />
   </ItemGroup>

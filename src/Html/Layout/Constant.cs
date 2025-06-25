@@ -55,7 +55,16 @@ public static class Constant
                 }
             </style>
         </head>
-        <body></body>
+        <body>
+            <header>
+                <nav id="nav">
+                    <a href="./"> 🏠 Home &nbsp </a>
+                    <a href="./blog"> 📝 Blog &nbsp </a>
+                    <a href="./about"> 🤵 About &nbsp</a>
+                </nav>
+            </header>
+            <main></main> 
+        </body>
     </html>
     """;
 }
