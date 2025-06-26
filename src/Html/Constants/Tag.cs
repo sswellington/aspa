@@ -1,6 +1,6 @@
 ﻿namespace Aspa.Html.Constants;
 
-public enum TagLevel
+public enum LevelTag
 {
   None = 0,
   Is1 = 1,
@@ -11,10 +11,10 @@ public enum TagLevel
   Is6 = 6
 }
 
-public static class TagConstant
+public static class Tag
 {
-  public static char Heading => 'h';
-  public static char Paragraph => 'p';
+  public static string Heading => "h";
+  public static string Paragraph => "p";
   public static string Title => "title";
   public static string Main => "main";
 }

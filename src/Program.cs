@@ -11,28 +11,29 @@ internal static class Program
     private static void Main()
     {
         Logger logger = new();
+        const string name = "Wellington Silva";
+        
+        #region  Index
         logger.Information("Page: index (start)");
-
-        Syntax.Heading("h1", TagLevel.Is1);
-        Syntax.Heading("h2", TagLevel.Is2);
-        Syntax.Heading("h3", TagLevel.Is3);
-        Syntax.Heading("h4", TagLevel.Is4);
-        Syntax.Heading("h5", TagLevel.Is5);
-        Syntax.Heading("h6");
-        Syntax.Paragraph("Software Developer | .NET | SQL Server | Python");
+        Syntax.Heading(name, LevelTag.Is1);
+        Syntax.Heading("Software Developer | .NET | SQL Server | Python", LevelTag.Is2);
         
         Model index = new
         (
             Minified: false,
-            Title: "aspa",
-            Main: Syntax.ToMain()
+            Title: name,
+            Main: Syntax.ToString()
         );
         
-        string filePath = FileConstant.Combine();
-        string html = Render(index);
-        
-        File.WriteAllText(filePath, html);
+        string indexInHtml = Render(index);
         logger.Information("Page: index (complete)");
+        #endregion
+        
+        logger.Information("save in html (start)");
+        string filePath = FilePath.Combine();
+        File.WriteAllText(filePath, indexInHtml);
+        logger.Information("save in html (start)");
+        
         logger.Export();
     }
 }

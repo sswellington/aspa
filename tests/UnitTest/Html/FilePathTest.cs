@@ -2,19 +2,19 @@
 
 namespace UnitTest.Html;
 
-public class FileConstantTest
+public class FilePathTest
 {
     [Fact(DisplayName = "Combine with default filename")]
     public void Combine_UsesDefaultFilename_WhenNoFilenameProvided()
     {
         // Arrange
-        string expectedFolderPath = "public"; // Your FolderPath
-        string expectedExtension = ".html";  // Your Extension
-        string expectedFilename = "index"; // Your default filename
+        const string expectedFolderPath = "public";
+        const string expectedExtension = ".html";
+        const string expectedFilename = "index";
         string expectedPath = Path.Combine(expectedFolderPath, expectedFilename + expectedExtension);
 
         // Act
-        string actualPath = FileConstant.Combine();
+        string actualPath = FilePath.Combine();
 
         // Assert
         Assert.Equal(expectedPath, actualPath);
@@ -24,13 +24,13 @@ public class FileConstantTest
     public void Combine_UsesCustomFilename_WhenFilenameProvided()
     {
         // Arrange
-        string expectedFolderPath = "public";
-        string expectedExtension = ".html";
-        string customFilename = "my_page";
+        const string expectedFolderPath = "public";
+        const string expectedExtension = ".html";
+        const string customFilename = "my_page";
         string expectedPath = Path.Combine(expectedFolderPath, customFilename + expectedExtension);
 
         // Act
-        string actualPath = FileConstant.Combine(customFilename);
+        string actualPath = FilePath.Combine(customFilename);
 
         // Assert
         Assert.Equal(expectedPath, actualPath);
@@ -40,12 +40,12 @@ public class FileConstantTest
     public void Combine_AppendsCorrectExtension()
     {
         // Arrange
-        string filename = "test_file";
-        string expectedExtension = ".html";
+        const string filename = "test_file";
+        const string expectedExtension = ".html";
         Path.Combine("public", filename + expectedExtension);
 
         // Act
-        string actualPath = FileConstant.Combine(filename);
+        string actualPath = FilePath.Combine(filename);
 
         // Assert
         Assert.EndsWith(expectedExtension, actualPath);
@@ -55,12 +55,12 @@ public class FileConstantTest
     public void Combine_HandlesEmptyFilename()
     {
         // Arrange
-        string expectedFolderPath = "public";
-        string expectedExtension = ".html";
+        const string expectedFolderPath = "public";
+        const string expectedExtension = ".html";
         string expectedPath = Path.Combine(expectedFolderPath, expectedExtension); // "public/.html"
 
         // Act
-        string actualPath = FileConstant.Combine(""); // Empty string
+        string actualPath = FilePath.Combine(""); // Empty string
 
         // Assert
         Assert.Equal(expectedPath, actualPath);
@@ -70,13 +70,13 @@ public class FileConstantTest
     public void Combine_HandlesFilenameWithSpacesAndSpecialCharacters()
     {
         // Arrange
-        string filename = "my file with spaces and -_#@!";
-        string expectedFolderPath = "public";
-        string expectedExtension = ".html";
+        const string filename = "my file with spaces and -_#@!";
+        const string expectedFolderPath = "public";
+        const string expectedExtension = ".html";
         string expectedPath = Path.Combine(expectedFolderPath, filename + expectedExtension);
 
         // Act
-        string actualPath = FileConstant.Combine(filename);
+        string actualPath = FilePath.Combine(filename);
 
         // Assert
         Assert.Equal(expectedPath, actualPath);

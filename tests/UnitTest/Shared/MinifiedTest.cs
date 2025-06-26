@@ -10,7 +10,7 @@ public sealed class MinifiedTest
         // Arrange
         string nullContent = null!;
         string emptyContent = string.Empty;
-        string whitespaceContent = "   \r\n\t  ";
+        const string whitespaceContent = "   \r\n\t  ";
 
         // Act
         string resultNull = Minify.Get(nullContent);
@@ -27,8 +27,8 @@ public sealed class MinifiedTest
     public void Get_ShouldRemoveAllNewlinesAndTabs()
     {
         // Arrange
-        string content = "Line 1\r\n\tLine 2\nLine 3";
-        string expected = "Line 1 Line 2 Line 3"; // Note: single spaces remain
+        const string content = "Line 1\r\n\tLine 2\nLine 3";
+        const string expected = "Line 1 Line 2 Line 3"; // Note: single spaces remain
 
         // Act
         string actual = Minify.Get(content);
@@ -41,8 +41,8 @@ public sealed class MinifiedTest
     public void Get_ShouldCollapseMultipleSpacesToSingleSpace()
     {
         // Arrange
-        string content = "Hello   World   From    Minifier";
-        string expected = "Hello World From Minifier";
+        const string content = "Hello   World   From    Minifier";
+        const string expected = "Hello World From Minifier";
 
         // Act
         string actual = Minify.Get(content);
@@ -55,8 +55,8 @@ public sealed class MinifiedTest
     public void Get_ShouldRemoveSpaceBetweenClosingAndOpeningTags()
     {
         // Arrange
-        string content = "<div> </div>   <span></span>"; // "> <" scenario
-        string expected = "<div></div><span></span>";
+        const string content = "<div> </div>   <span></span>"; // "> <" scenario
+        const string expected = "<div></div><span></span>";
 
         // Act
         string actual = Minify.Get(content);
@@ -69,8 +69,8 @@ public sealed class MinifiedTest
     public void Get_ShouldPreserveSpaceWithinTextContent()
     {
         // Arrange
-        string content = "<h1>  My Title With Spaces  </h1><p>This is  a  paragraph.</p>";
-        string expected = "<h1>My Title With Spaces</h1><p>This is a paragraph.</p>";
+        const string content = "<h1>  My Title With Spaces  </h1><p>This is  a  paragraph.</p>";
+        const string expected = "<h1>My Title With Spaces</h1><p>This is a paragraph.</p>";
 
         // Act
         string actual = Minify.Get(content);
@@ -83,7 +83,7 @@ public sealed class MinifiedTest
     public void Get_ShouldHandleLeadingAndTrailingWhitespace()
     {
         // Arrange
-        string content = "   \n\t<h1>Content</h1>   \r\n";
+        const string content = "   \n\t<h1>Content</h1>   \r\n";
         // The logic implicitly handles leading spaces if the first non-whitespace
                                             // char isn't a space that follows a previous whitespace.
                                             // Trailing spaces won't be removed by this iteration.
@@ -91,9 +91,8 @@ public sealed class MinifiedTest
         
         // As per your code's logic, a single trailing space might remain if the last char processed was a space.
         // It's not explicitly doing a final .Trim()
-        string contentWithTrailingSpace = "<h1>Content</h1>   ";
-
-        string contentWithLeadingSpace = "   <h1>Content</h1>";
+        const string contentWithTrailingSpace = "<h1>Content</h1>   ";
+        const string contentWithLeadingSpace = "   <h1>Content</h1>";
 
         // Act
         string actual1 = Minify.Get(content);
@@ -113,25 +112,27 @@ public sealed class MinifiedTest
     public void Get_ShouldHandleComplexHtmlStructure()
     {
         // Arrange
-        string content = @"
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title> Test Page </title>
-                <style>
-                    body  {  margin:   0;  } /* CSS spaces should remain within rules */
-                </style>
-            </head>
-            <body>
-                <h1>Hello    World</h1>
-                <p> This is a paragraph with   some   spaces. </p>
-                <div>
-                    <span>Item 1</span>   <span>Item 2</span>
-                </div>
-            </body>
-            </html>
-        ";
-        string expected = "<!DOCTYPE html><html><head><title>Test Page</title><style>body { margin: 0; }</style></head><body><h1>Hello World</h1><p>This is a paragraph with some spaces.</p><div><span>Item 1</span><span>Item 2</span></div></body></html>";
+        const string content = """
+
+                                           <!DOCTYPE html>
+                                           <html>
+                                           <head>
+                                               <title> Test Page </title>
+                                               <style>
+                                                   body  {  margin:   0;  } /* CSS spaces should remain within rules */
+                                               </style>
+                                           </head>
+                                           <body>
+                                               <h1>Hello    World</h1>
+                                               <p> This is a paragraph with   some   spaces. </p>
+                                               <div>
+                                                   <span>Item 1</span>   <span>Item 2</span>
+                                               </div>
+                                           </body>
+                                           </html>
+                                       
+                               """;
+        const string expected = "<!DOCTYPE html><html><head><title>Test Page</title><style>body { margin: 0; }</style></head><body><h1>Hello World</h1><p>This is a paragraph with some spaces.</p><div><span>Item 1</span><span>Item 2</span></div></body></html>";
         
         // Act
         string actual = Minify.Get(content);

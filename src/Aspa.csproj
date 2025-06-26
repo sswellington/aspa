@@ -8,16 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="html\Builder.cs" />
-    <Compile Remove="Html\Layout\Assets\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="Html\Layout\Assets\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Html\Layout\Assets\**" />
+    <PackageReference Include="coverlet.msbuild" Version="6.0.4">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

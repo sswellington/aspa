@@ -36,7 +36,7 @@ public class LoggerTest
 
         // Verify the specific message and its level are present
         Assert.Contains(message, service.CurrentLogContent);
-        Assert.Contains($"[{level.ToString()}]", service.CurrentLogContent);
+        Assert.Contains($"[{Enum.GetName(level)!}]", service.CurrentLogContent);
 
         // Verify that the "Aspa (complete)" message is NOT present, as Export was not called
         Assert.DoesNotContain("Aspa (complete)", service.CurrentLogContent);
@@ -49,12 +49,12 @@ public class LoggerTest
     {
         // Arrange
         var service = new Service();
-        string verboseMsg = "Msg V";
-        string debugMsg = "Msg D";
-        string infoMsg = "Msg I";
-        string warnMsg = "Msg W";
-        string errorMsg = "Msg E";
-        string fatalMsg = "Msg F";
+        const string verboseMsg = "Msg V";
+        const string debugMsg = "Msg D";
+        const string infoMsg = "Msg I";
+        const string warnMsg = "Msg W";
+        const string errorMsg = "Msg E";
+        const string fatalMsg = "Msg F";
 
         // Act
         service.Verbose(verboseMsg);

@@ -5,32 +5,43 @@ namespace Aspa.Html.Utils;
 
 public static class Syntax
 {
-    private static StringBuilder _main = new StringBuilder();
+    private readonly static StringBuilder Content = new();
     
-    private static void Base(string text, char tag, TagLevel level = TagLevel.None)
+    private static void Base(string text, string tag, LevelTag level = LevelTag.None)
     {
-        if (level == TagLevel.None)
+        const string indent = "            ";
+        if (level == LevelTag.None)
         {
-            _main.AppendLine($"<{tag}> {text} </{tag}>");
+            Content.AppendLine($"{indent}<{tag}> {text} </{tag}>");
             return;
         }
         
-        string tagWithLevel = tag + ((int)level).ToString();
-        _main.AppendLine($"<{tagWithLevel}> {text} </{tagWithLevel}>");
+        string tagWithLevel = $"{tag}{((int)level)}";
+        Content.AppendLine($"{indent}<{tagWithLevel}> {text} </{tagWithLevel}>");
+    }
+
+    public static void Root(string command)
+    {
+        Content.AppendLine(command);
     }
     
-    public static void Heading(string heading, TagLevel level = TagLevel.Is6) 
+    public static void Heading(string heading, LevelTag level = LevelTag.Is6) 
     {
-        Base(text: heading, tag: TagConstant.Heading, level);
+        Base(text: heading, tag: Tag.Heading, level);
     }
 
     public static void Paragraph(string paragraph)
     {
-        Base(paragraph, tag: TagConstant.Paragraph);
+        Base(paragraph, tag: Tag.Paragraph);
     }
 
-    public static string ToMain()
+    public static void Clear()
     {
-        return _main.ToString();
+        Content.Clear();
+    }
+
+    public new static string ToString()
+    {
+        return Content.ToString();
     }
 }

@@ -77,7 +77,7 @@ public static class Minify
                 case '<':
                     // If the character before '<' in the StringBuilder was a space, remove it.
                     // This handles cases like "text <tag>" becoming "text<tag>" or "</div> <div" becoming "</div><div".
-                    if (_prevCharWasWhitespace && sb.Length > 0 && sb[sb.Length - 1] == ' ')
+                    if (_prevCharWasWhitespace && sb.Length > 0 && sb[^1] == ' ')
                     {
                         sb.Length--;
                     }
@@ -97,7 +97,7 @@ public static class Minify
                 default:
                     sb.Append(c);
                     _prevCharWasWhitespace = false;
-                    _lastWasTagBoundary = false; // Resetamos a flag para caracteres normais
+                    _lastWasTagBoundary = false;
                     break;
             }
             #endregion
@@ -127,32 +127,29 @@ public static class Minify
         bool isCommentInHtml = IsComment(content, currentIndex);
         bool isBeginningOfComment = IsComment(content, currentIndex);
         bool isEndeningOfComment = IsComment(content, currentIndex, begin: false);
-        
-        // Check for start of HTML comment
-        if (_inHtmlComment && isCommentInHtml)
+
+        switch (_inHtmlComment)
         {
-            _inHtmlComment = false;
-            currentIndex += currentIndexInHtml; // Advance index past "-->"
-            return true;
+            // Check for start of HTML comment
+            case true when isCommentInHtml:
+                _inHtmlComment = false;
+                currentIndex += currentIndexInHtml; // Advance index past "-->"
+                return true;
+
+            // Check for start of CSS/JS comment (/*)
+            case false when !_inCssComment && isBeginningOfComment:
+                _inCssComment = true;
+                currentIndex += 1; // Advance index past "*"
+                return true;
         }
 
-        // Check for start of CSS/JS comment (/*)
-        if (!_inHtmlComment && !_inCssComment && isBeginningOfComment)
-        {
-            _inCssComment = true;
-            currentIndex += 1; // Advance index past "*"
-            return true;
-        }
-        
         // Check for end of CSS/JS comment (*/)
-        if (_inCssComment && isEndeningOfComment)
-        {
-            _inCssComment = false;
-            currentIndex += 1; // Advance index past "/"
-            return true;
-        }
+        if (!_inCssComment || !isEndeningOfComment)
+            return false; // No comment sequence was found or handled at this position
 
-        return false; // No comment sequence was found or handled at this position
+        _inCssComment = false;
+        currentIndex += 1; // Advance index past "/"
+        return true;
     }
     #endregion
 }
