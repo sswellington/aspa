@@ -2,9 +2,14 @@
 
 namespace Aspa.Html.Layout;
 
-public record Model
+public class Model
 (
-    bool Minified = true,
-    string Title = LoremIpsum.Title,
-    string Main = LoremIpsum.Main
-);
+    bool minified = true,
+    string title = LoremIpsum.Title,
+    string main = LoremIpsum.Main
+)
+{
+    public bool Minified = minified;
+    public string Title = title;
+    public string Main = main;
+}

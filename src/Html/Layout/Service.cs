@@ -1,42 +1,22 @@
-using System.Text;
 using Aspa.Html.Constants;
 using Aspa.Shared;
+using static Aspa.Html.Utils.Semantic;
 
 namespace Aspa.Html.Layout;
 
 public abstract record Service
 {
-    private static string TitleTag(string titleTag)
-    {
-        return new StringBuilder()
-            .Append('<')
-            .Append(Tag.Title)
-            .Append('>')
-            .Append(titleTag)
-            .Append("</")
-            .Append(Tag.Title)
-            .Append('>')
-            .ToString();
-    }
-
-    private static string MainTag(string mainTag)
-    {
-        return new StringBuilder()
-            .Append('<')
-            .Append(Tag.Main)
-            .Append(">\n")
-            .Append(mainTag)
-            .Append("        </")
-            .Append(Tag.Title)
-            .Append('>')
-            .ToString();
-    }
-
     public static string Render(Model model)
     {
+        string title = AddValueToTag(string.Empty, Tag.Title);
+        string newTitle = AddValueToTag(model.Title, Tag.Title);
+        
+        string main = AddValueToTag(string.Empty, Tag.Main);
+        string newMain = AddValueToTagLine(model.Main, Tag.Main);
+        
         string html = Template.NewCss
-            .Replace("<title></title>", TitleTag(model.Title))
-            .Replace("<main></main>", MainTag(model.Main));
+            .Replace(title, newTitle)
+            .Replace(main, newMain);
         
         return model.Minified ? Minify.Get(html) : html;
     }

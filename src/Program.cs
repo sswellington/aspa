@@ -10,28 +10,39 @@ internal static class Program
 {
     private static void Main()
     {
-        Logger logger = new();
         const string name = "Wellington Silva";
-        
-        #region  Index
-        logger.Information("Page: index (start)");
-        Syntax.Heading(name, LevelTag.Is1);
-        Syntax.Heading("Software Developer | .NET | SQL Server | Python", LevelTag.Is2);
-        
-        Model index = new
+        Logger logger = new();
+        Model model = new
         (
-            Minified: false,
-            Title: name,
-            Main: Syntax.ToString()
+            minified: false,
+            title: name
         );
         
-        string indexInHtml = Render(index);
+        #region Index
+        logger.Information("Page: index (start)");
+        Syntax.Clear();
+        Syntax.Heading(name, HeadingLevel.Is1);
+        Syntax.Heading("Software Developer | .NET | SQL Server | Python", HeadingLevel.Is2);
+        Syntax.Paragraph("Software Developer | .NET | SQL Server | Python");
+        Syntax.Super("Software Developer | .NET | SQL Server | Python", "h2");
+        Syntax.Super("Software Developer | .NET | SQL Server | Python", "p");
+        model.Main = Syntax.ToString();
+        string indexHtml = Render(model);
         logger.Information("Page: index (complete)");
         #endregion
         
+        Syntax.Clear();
+        logger.Information("Page: about (start)");
+        Syntax.Heading(name, HeadingLevel.Is1);
+        model.Main = Syntax.ToString();
+        string aboutHtml = Render(model);
+        logger.Information("Page: about (complete)");
+        
         logger.Information("save in html (start)");
-        string filePath = FilePath.Combine();
-        File.WriteAllText(filePath, indexInHtml);
+        string indexPath = FilePath.Combine();
+        string aboutPath = FilePath.Combine("about");
+        File.WriteAllText(indexPath, indexHtml);
+        File.WriteAllText(aboutPath, aboutHtml);
         logger.Information("save in html (start)");
         
         logger.Export();

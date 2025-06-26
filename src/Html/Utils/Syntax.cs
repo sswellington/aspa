@@ -1,38 +1,35 @@
 ﻿using System.Text;
 using Aspa.Html.Constants;
+using static Aspa.Html.Utils.Semantic;
 
 namespace Aspa.Html.Utils;
 
 public static class Syntax
 {
     private readonly static StringBuilder Content = new();
-    
-    private static void Base(string text, string tag, LevelTag level = LevelTag.None)
-    {
-        const string indent = "            ";
-        if (level == LevelTag.None)
-        {
-            Content.AppendLine($"{indent}<{tag}> {text} </{tag}>");
-            return;
-        }
-        
-        string tagWithLevel = $"{tag}{((int)level)}";
-        Content.AppendLine($"{indent}<{tagWithLevel}> {text} </{tagWithLevel}>");
-    }
 
-    public static void Root(string command)
+    private static void Base(string text, string tag)
     {
-        Content.AppendLine(command);
+        Content.AppendLine(AddValueToTag(text, tag, Indentation.Unit));
     }
     
-    public static void Heading(string heading, LevelTag level = LevelTag.Is6) 
+    public static void Super(string text, string tag)
     {
-        Base(text: heading, tag: Tag.Heading, level);
+        Base(text, tag);
     }
 
+    public static void Heading(string heading, HeadingLevel headingLevel = HeadingLevel.Is6)
+    {
+        string tag = new StringBuilder()
+            .Append('h')
+            .Append((int)headingLevel)
+            .ToString();
+        Base(heading, tag);
+    }
+    
     public static void Paragraph(string paragraph)
     {
-        Base(paragraph, tag: Tag.Paragraph);
+        Base(paragraph, tag: "p");
     }
 
     public static void Clear()
