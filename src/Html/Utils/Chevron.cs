@@ -3,9 +3,9 @@ using Aspa.Html.Constants;
 
 namespace Aspa.Html.Utils;
 
-public static class Semantic
+public static class Chevron
 {
-	private static string Open(string tag)
+	private static string OpeningTags(string tag)
 	{
 		return new StringBuilder()
 			.Append('<')
@@ -14,7 +14,7 @@ public static class Semantic
 			.ToString();
 	}
 
-	private static string Close(string tag)
+	private static string ClosingTags(string tag)
 	{
 		return new StringBuilder()
 			.Append("</")
@@ -26,9 +26,9 @@ public static class Semantic
 	public static string AddValueToTag(string value, string tag)
 	{
 		return new StringBuilder()
-			.Append(Open(tag))
+			.Append(OpeningTags(tag))
 			.Append(value)
-			.Append(Close(tag))
+			.Append(ClosingTags(tag))
 			.ToString();
 	}
 	
@@ -37,19 +37,19 @@ public static class Semantic
 		return new StringBuilder()
 			.Append(Indentation.Main)
 			.Append(indentation)
-			.Append(Open(tag))
+			.Append(OpeningTags(tag))
 			.Append(value)
-			.Append(Close(tag))
+			.Append(ClosingTags(tag))
 			.ToString();
 	}
 
 	public static string AddValueToTagLine(string value, string tag)
 	{
 		return new StringBuilder()
-			.AppendLine(Open(tag))
+			.AppendLine(OpeningTags(tag))
 			.AppendLine(value)
 			.Append(Indentation.Main) 
-			.Append(Close(tag))
+			.Append(ClosingTags(tag))
 			.ToString();
 	}
 }

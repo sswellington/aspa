@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Aspa.Html.Constants;
-using static Aspa.Html.Utils.Semantic;
+using Aspa.Shared;
+using static Aspa.Html.Utils.Chevron;
 
 namespace Aspa.Html.Utils;
 
@@ -40,5 +41,20 @@ public static class Syntax
     public new static string ToString()
     {
         return Content.ToString();
+    }
+    
+    public static string Render(string title, string main, bool minified)
+    {
+        string oldTitle = AddValueToTag(string.Empty, Tag.Title);
+        string newTitle = AddValueToTag(title, Tag.Title);
+        
+        string oldMain = AddValueToTag(string.Empty, Tag.Main);
+        string newMain = AddValueToTagLine(main, Tag.Main);
+        
+        string html = Template.NewCss()
+            .Replace(oldTitle, newTitle)
+            .Replace(oldMain, newMain);
+        
+        return minified ? Minify.Get(html) : html;
     }
 }

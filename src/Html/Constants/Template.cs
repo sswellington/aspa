@@ -16,7 +16,7 @@ public static class Template
         return new StringBuilder().Append(
                 """
                 <!DOCTYPE  PUBLIC "-//W3C//DTD X 1.0 Transitional//EN" "http://www.w3.org/TR/x1/DTD/x1-transitional.dtd">
-                < lang="pt-br" xmlns="http://www.w3.org/1999/x" xml:lang="pt-br">
+                <html lang="pt-br" xmlns="http://www.w3.org/1999/x" xml:lang="pt-br">
                     <head>
                         <meta charset='utf-8'>
                         <meta http-equiv="Cache-control" content="public">
@@ -29,7 +29,6 @@ public static class Template
                         <title></title>
                         
                         <link rel="stylesheet" href="assets/css/reset.min.css" />
-                        
                 """
             )
             .Append(cssLinks)
@@ -40,9 +39,9 @@ public static class Template
                     <body>
                         <header>
                             <nav id="nav">
-                                <a href="./"> 🏠 Home &nbsp </a>
-                                <a href="./blog"> 📝 Blog &nbsp </a>
-                                <a href="./about"> 🤵 About &nbsp</a>
+                                <a href="./index.html"> 🏠 Home &nbsp </a>
+                                <a href="./blog.html"> 📝 Blog &nbsp </a>
+                                <a href="./sobre.html"> 🤵 Sobre &nbsp</a>
                             </nav>
                         </header>
                         <main></main>
