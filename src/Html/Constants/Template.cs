@@ -28,19 +28,20 @@ public static class Template
 
                         <title></title>
                         
+                        <link rel="shortcut icon" href="assets/favicon.ico" />
                         <link rel="stylesheet" href="assets/css/reset.min.css" />
                 """
             )
             .Append(cssLinks)
             .Append(
                 """
-
+                    <link rel="stylesheet" href="assets/css/linktree.css" />
                     </head>
                     <body>
                         <header>
                             <nav id="nav">
                                 <a href="./index.html"> 🏠 Home &nbsp </a>
-                                <a href="./blog.html"> 📝 Blog &nbsp </a>
+                                <a href="https://sswellington.github.io/blog/"> 📝 Blog &nbsp </a>
                                 <a href="./sobre.html"> 🤵 Sobre &nbsp</a>
                             </nav>
                         </header>
@@ -53,7 +54,7 @@ public static class Template
                 """
 
                     </body>
-                </>
+                </html>
                 """
             )
             .ToString();

@@ -1,4 +1,4 @@
-﻿using Aspa.Shared.Logger;
+﻿using Aspa.Shared;
 
 namespace UnitTest.Shared;
 
@@ -14,7 +14,7 @@ public class LoggerTest
     public void Service_LogsSpecificLevelMessageCorrectly(string message, Level level)
     {
         // Arrange
-        var service = new Service(); // A Service instance starts with "Aspa (start)"
+        var service = new LoggerService(); // A Service instance starts with "Aspa (start)"
 
         // Act
         // Call the specific log method based on the 'level' parameter
@@ -48,7 +48,7 @@ public class LoggerTest
     public void Service_LogsAllMessageTypesSequentially()
     {
         // Arrange
-        var service = new Service();
+        var service = new LoggerService();
         const string verboseMsg = "Msg V";
         const string debugMsg = "Msg D";
         const string infoMsg = "Msg I";

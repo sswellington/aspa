@@ -110,3 +110,8 @@ We warmly welcome contributions to the Aspa HTML Generator project\! Whether you
 8.  **Open a Pull Request:** Navigate to the original Aspa HTML Generator repository on GitHub and open a new Pull Request from your branch. Provide a detailed description of your changes and link to any relevant issues.
 
 We'll review your contribution as soon as possible. Thank you for helping make Aspa HTML Generator better for everyone\!
+
+
+
+# Reference
+[What is a static site generator? by Cloudflare](https://www.cloudflare.com/learning/performance/static-site-generator/)
