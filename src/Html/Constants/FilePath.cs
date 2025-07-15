@@ -2,7 +2,7 @@
 
 public static class FilePath
 {
-    private static string FolderPath => "public";
+    public static string FolderPath => "public";
     private static string Extension => ".html";
     
     public static string Combine(string filename = "index")

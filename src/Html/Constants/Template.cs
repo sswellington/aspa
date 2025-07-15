@@ -11,7 +11,7 @@ public static class Template
     /// <param name="cssLinks">A string containing all &lt;link&gt; tags for CSS to be injected into the &lt;head&gt;.</param>
     /// <param name="jsScripts">A string containing all &lt;script&gt; tags for JavaScript to be injected before the closing &lt;/body&gt; tag.</param>
     /// <returns>A string representing the complete HTML structure with styles and scripts applied.</returns>
-    private static string Base(string cssLinks, string jsScripts)
+    public static string Base(string cssLinks, string jsScripts)
     {
         return new StringBuilder().Append(
                 """
@@ -28,19 +28,20 @@ public static class Template
 
                         <title></title>
                         
+                        <link rel="shortcut icon" href="assets/favicon.ico" />
                         <link rel="stylesheet" href="assets/css/reset.min.css" />
                 """
             )
             .Append(cssLinks)
             .Append(
                 """
-
+                    <link rel="stylesheet" href="assets/css/linktree.css" />
                     </head>
                     <body>
                         <header>
                             <nav id="nav">
                                 <a href="./index.html"> 🏠 Home &nbsp </a>
-                                <a href="./blog.html"> 📝 Blog &nbsp </a>
+                                <a href="https://sswellington.github.io/blog/"> 📝 Blog &nbsp </a>
                                 <a href="./sobre.html"> 🤵 Sobre &nbsp</a>
                             </nav>
                         </header>
@@ -53,7 +54,7 @@ public static class Template
                 """
 
                     </body>
-                </>
+                </html>
                 """
             )
             .ToString();

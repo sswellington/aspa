@@ -7,11 +7,16 @@ namespace Aspa.Html.Utils;
 
 public static class Syntax
 {
-    private readonly static StringBuilder Content = new();
+    private static readonly StringBuilder Content = new();
 
     private static void Base(string text, string tag)
     {
         Content.AppendLine(AddValueToTag(text, tag, Indentation.Unit));
+    }
+    
+    public static void InjectHtml(string html)
+    {
+        Base(html, "article");
     }
     
     public static void Super(string text, string tag)

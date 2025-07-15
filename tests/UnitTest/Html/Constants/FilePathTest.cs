@@ -1,6 +1,6 @@
 ﻿using Aspa.Html.Constants;
 
-namespace UnitTest.Html;
+namespace UnitTest.Html.Constants;
 
 public class FilePathTest
 {
